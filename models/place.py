@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Place Module for HBNB project """
+""" This is a Place Module for HBNB project """
 from models.base_model import BaseModel, Base
 from sqlalchemy import Table, Column, String, Integer, ForeignKey, Float
 from sqlalchemy.orm import relationship
@@ -16,7 +16,7 @@ place_amenity = Table('place_amenity', Base.metadata,
 
 
 class Place(BaseModel, Base):
-    """ A place to stay """
+    """ Is A place to stay """
     __tablename__ = 'places'
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
@@ -48,13 +48,13 @@ class Place(BaseModel, Base):
 
         @property
         def reviews(self):
-            """Get reviews for current Place.id"""
+            """This Get reviews for current Place.id"""
             matching_reviews = [Review.all(Review.place_id == self.id)]
             return matching_reviews
 
         @property
         def amenities(self):
-            """get amenities for current place"""
+            """This get amenities for current place"""
             return self.amenity_ids
         
         @amenities.setter

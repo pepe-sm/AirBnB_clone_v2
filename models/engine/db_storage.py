@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 db_storage module
-Contains DBStorage class that handles db interactions with SQLAlchemy
+This Contains DBStorage class that handles db interactions with SQLAlchemy
 """
 from sqlalchemy import create_engine
 from os import getenv
@@ -16,12 +16,12 @@ from models.user import User
 
 
 class DBStorage:
-    """Class that handles db interactions"""
+    """Is Class that handles db interactions"""
     __engine = None
     __session = None
 
     def __init__(self):
-        """Initializes an instance of DBStorage class"""
+        """This Initializes an instance of DBStorage class"""
         # Retrieves db credentials and config from env vars
         user = getenv('HBNB_MYSQL_USER')
         password = getenv('HBNB_MYSQL_PWD')
@@ -38,7 +38,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """Return all objects of a class"""
+        """This Return all objects of a class"""
         dictionary = {}
         classes = [State, City, User, Place, Review, Amenity]
         if cls:
@@ -53,20 +53,20 @@ class DBStorage:
         return dictionary
 
     def new(self, obj):
-        """Add obj to the current database session"""
+        """This Add obj to the current database session"""
         self.__session.add(obj)
 
     def save(self):
-        """Commit all changes of the current database session"""
+        """This Commit all changes of the current database session"""
         self.__session.commit()
 
     def delete(self, obj=None):
-        """Delete obj from the current database session"""
+        """This Delete obj from the current database session"""
         if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):
-        """Creates all tables in the db and establishes session"""
+        """This Creates all tables in the db and establishes session"""
         # Create all tables in the db using provided engine
         Base.metadata.create_all(self.__engine)
         # Create sessions linked to db engine
@@ -76,5 +76,5 @@ class DBStorage:
         self.__session = Session
 
     def close(self):
-        """Closes the active session"""
+        """This Closes the active session"""
         self.__session.remove()

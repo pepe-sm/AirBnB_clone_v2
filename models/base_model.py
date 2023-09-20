@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module defines a base class for all models in our hbnb clone"""
+"""This is a module that defines a base class for all models in our hbnb clone"""
 from uuid import uuid4
 from datetime import datetime
 from sqlalchemy import Column, DateTime, String
@@ -10,13 +10,13 @@ Base = declarative_base()
 
 
 class BaseModel:
-    """A base class for all hbnb models"""
+    """Is A base class for all hbnb models"""
     id = Column(String(60), primary_key=True, nullable=False)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
     updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
-        """Instantiates a new model"""
+        """This Instantiates a new model"""
         if kwargs:
             kwargs.pop("__class__", None)
             for k, v in kwargs.items():
@@ -34,21 +34,21 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
-        """Returns a string representation of the instance"""
+        """This Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
         instance_dict = {k: v for k, v in self.__dict__.items()}
         instance_dict.pop("_sa_instance_state", None)
         return '[{}] ({}) {}'.format(cls, self.id, instance_dict)
 
     def save(self):
-        """Updates updated_at with current time when instance is changed"""
+        """This Updates updated_at with current time when instance is changed"""
         from models import storage
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
 
     def to_dict(self):
-        """Convert instance into dict format"""
+        """This Convert instance into dict format"""
         dictionary = {}
         dictionary.update(self.__dict__)
         dictionary.pop("_sa_instance_state", None)
@@ -59,6 +59,6 @@ class BaseModel:
         return dictionary
 
     def delete(self):
-        """ Delete the current instance from the storage """
+        """ This Delete the current instance from the storage """
         from models import storage
         return storage.delete(self)
