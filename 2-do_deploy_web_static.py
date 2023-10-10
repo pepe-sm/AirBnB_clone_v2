@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 import os.path as path
 
-env.hosts = ['35.237.217.126', '35.229.75.225']
+env.hosts = ['35.175.64.173', '54.158.205.17']
 now = datetime.now()
 dt_string = now.strftime("%Y%m%d%H%M%S")
 
