@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ route home page to return hello hbnb"""
+
 from flask import Flask
 
 app = Flask(__name__)
